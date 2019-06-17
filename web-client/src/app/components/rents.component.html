@@ -1,0 +1,54 @@
+<section class="container">
+  <h1 class="mb-2">Rents</h1>
+  <div class="card p-4 mb-3">
+    <div class="form-group">
+      <select class="form-control" [(ngModel)]="newRent.book_id">
+        <option [ngValue]="undefined" disabled>Select Book</option>
+        <option *ngFor="let book of books" [ngValue]="book.id">{{
+          book.title
+        }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="form-control" [(ngModel)]="newRent.reader_id">
+        <option [ngValue]="undefined" disabled>Select Reader</option>
+        <option *ngFor="let reader of readers" [ngValue]="reader.id">{{
+          reader.name
+        }}</option>
+      </select>
+    </div>
+    <button (click)="addRent()" class="btn btn-primary btn-sm">Add</button>
+  </div>
+
+  <section class="main" *ngIf="rents.length > 0">
+    <ul class="list-group">
+      <li *ngFor="let rent of sorted" class="list-group-item">
+        <div class="d-flex align-items-center justify-content-between">
+          <div
+            class="custom-control custom-checkbox"
+            (click)="toggleRent(rent)"
+          >
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              (click)="toggleRent(rent)"
+              [checked]="rent.returned"
+            />
+            <label class="custom-control-label"
+              ><strong>{{ rent.book ? rent.book.title : "No book" }} </strong>
+              <div>
+                {{ rent.reader ? rent.reader.name : "No reader" }}
+              </div></label
+            >
+          </div>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="removeRent(rent)"
+          >
+            Delete
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+</section>

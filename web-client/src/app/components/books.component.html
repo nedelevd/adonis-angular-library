@@ -1,0 +1,39 @@
+<section class="container">
+  <h1 class="mb-2">Books</h1>
+  <div class="card p-4 mb-3">
+    <div class="form-group">
+      <input
+        class="form-control"
+        placeholder="Title"
+        [(ngModel)]="newBook.title"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control"
+        placeholder="Author"
+        [(ngModel)]="newBook.author"
+      />
+    </div>
+    <button (click)="addBook()" class="btn btn-primary btn-sm">Add</button>
+  </div>
+
+  <section class="main" *ngIf="books.length > 0">
+    <ul class="list-group">
+      <li *ngFor="let book of sorted" class="list-group-item">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <strong>{{ book.title }}</strong>
+            <div>{{ book.author }}</div>
+          </div>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="removeBook(book)"
+          >
+            Delete
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+</section>

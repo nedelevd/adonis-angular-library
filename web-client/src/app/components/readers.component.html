@@ -1,0 +1,39 @@
+<section class="container">
+  <h1 class="mb-2">Readers</h1>
+  <div class="card p-4 mb-3">
+    <div class="form-group">
+      <input
+        class="form-control"
+        placeholder="Name"
+        [(ngModel)]="newReader.name"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control"
+        placeholder="Address"
+        [(ngModel)]="newReader.address"
+      />
+    </div>
+    <button (click)="addReader()" class="btn btn-primary btn-sm">Add</button>
+  </div>
+
+  <section class="main" *ngIf="readers.length > 0">
+    <ul class="list-group">
+      <li *ngFor="let reader of sorted" class="list-group-item">
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <strong>{{ reader.name }} </strong>
+            <div>{{ reader.address }}</div>
+          </div>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="removeReader(reader)"
+          >
+            Delete
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+</section>
